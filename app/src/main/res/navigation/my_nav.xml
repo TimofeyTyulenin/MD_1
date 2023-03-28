@@ -23,12 +23,22 @@
         tools:layout="@layout/fragment_view_pager" >
         <action
             android:id="@+id/action_viewPagerFragment_to_loginActivity"
-            app:destination="@id/loginActivity"
+            app:destination="@id/navigation"
             app:popUpToInclusive="true" />
     </fragment>
     <activity
-        android:id="@+id/loginActivity"
-        android:name="com.example.md_1.LoginActivity"
-        android:label="activity_login"
-        tools:layout="@layout/activity_login" />
+        android:id="@+id/bottomNavigationActivity"
+        android:name="com.example.md_1.BottomNavigationActivity"
+        android:label="BottomNavigationActivity" />
+    <navigation android:id="@+id/navigation"
+        app:startDestination="@id/loginActivity">
+        <activity
+            android:id="@+id/loginActivity"
+            android:name="com.example.md_1.LoginActivity"
+            android:label="activity_login"
+            tools:layout="@layout/activity_login" />
+        <action
+            android:id="@+id/action_global_bottomNavigationActivity"
+            app:destination="@id/bottomNavigationActivity" />
+    </navigation>
 </navigation>

@@ -12,16 +12,20 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.md_1.onboarding.ViewPagerFragment
+
+
 
 class LoginActivity : AppCompatActivity() {
     private var isPasswordVisible = false
     private var pass: EditText? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        val prevbutton=findViewById<ImageView>(R.id.prevbutton)
+        supportActionBar?.hide()
+        val prevbutton = findViewById<ImageView>(R.id.prevbutton)
         prevbutton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -41,46 +45,45 @@ class LoginActivity : AppCompatActivity() {
             else if (pass.text.isEmpty())
                 pass.hint = "Enter your password"
             else {
-                val intent = Intent(this, BottomNavigationActivity::class.java)
-                startActivity(intent)
+                val bna = Intent(this, BottomNavigationActivity::class.java)
+                startActivity(bna)
             }
+            var password = pass
 
-            }
-var password = pass
-
-        pass.setOnTouchListener(View.OnTouchListener { _, event ->
-            val right = 2
-            if (event.action == MotionEvent.ACTION_UP) {
-                if (event.rawX >= password.right - password.compoundDrawables[right].bounds.width() - 50) {
-                    val selection = password.selectionEnd
-                    if (isPasswordVisible) {
-                        password.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                            0,
-                            0,
-                            R.drawable.visibility_off,
-                            0
-                        )
-                        password.inputType =
-                            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-                        isPasswordVisible = false
-                    } else {
-                        password.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                            0,
-                            0,
-                            R.drawable.visibility_on,
-                            0
-                        )
-                        password.inputType = 1
-                        isPasswordVisible = true
+            pass.setOnTouchListener(View.OnTouchListener { _, event ->
+                val right = 2
+                if (event.action == MotionEvent.ACTION_UP) {
+                    if (event.rawX >= password.right - password.compoundDrawables[right].bounds.width() - 50) {
+                        val selection = password.selectionEnd
+                        if (isPasswordVisible) {
+                            password.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                                0,
+                                0,
+                                R.drawable.visibility_off,
+                                0
+                            )
+                            password.inputType =
+                                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                            isPasswordVisible = false
+                        } else {
+                            password.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                                0,
+                                0,
+                                R.drawable.visibility_on,
+                                0
+                            )
+                            password.inputType = 1
+                            isPasswordVisible = true
+                        }
+                        pass.setSelection(selection)
+                        this.pass = password
+                        return@OnTouchListener true
                     }
-                    pass.setSelection(selection)
-                    this.pass = password
-                    return@OnTouchListener true
                 }
-            }
-            false
-        })
+                false
+            })
 
         }
 
     }
+}

@@ -3,6 +3,7 @@
     <string name="textonmainpage">WordsFactory</string>
     <string name="skip">Skip</string>
     <string name="btnext">Next</string>
+    <string name="p1">The practice or skill of preparing food by\ncombining, mixing, and heating ingredients.\n\n<font color="#65AAEA">Example:</font> he developed an interest in cooking.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
